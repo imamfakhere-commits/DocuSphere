@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | DocuSphere</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #101827, #243b55);
+            padding: 20px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            padding: 40px 32px;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #1e293b;
+            margin-bottom: 22px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #334155;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .register {
+            text-align: center;
+            margin-top: 22px;
+            color: #64748b;
+        }
+
+        .register a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #dc2626;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card">
+
+        <div class="logo">DocuSphere</div>
+        <p class="subtitle">Powered by Nexora AI</p>
+
+        <h2>Welcome Back</h2>
+
+        {% if form.errors %}
+            <p class="error">Invalid username or password. Please try again.</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="id_username">Username</label>
+            <input
+                type="text"
+                name="username"
+                id="id_username"
+                placeholder="Enter your username"
+                required
+                autofocus
+            >
+
+            <label for="id_password">Password</label>
+            <input
+                type="password"
+                name="password"
+                id="id_password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="register">
+            Don't have an account?
+            <a href="{% url 'register' %}">Create Account</a>
+        </div>
+
+        <div class="footer">
+            © DocuSphere | Powered by Nexora AI
+        </div>
+
+    </div>
+
+</body>
+</html>
